@@ -9,19 +9,53 @@ btnReset.addEventListener('click', (e) => {
   overlay.style.display = "none";
 });
 
-//return a random phrase of an array
-const getRandomPhraseAsArray = arr => {
+const phrases = [
+  'Twelve Carat Toothache',
+  'Die lit',
+  'Come home the kids miss you',
+  'Tickets to my downfall',
+  'I never liked you',
+]
 
+//return a random phrase of an array
+function getRandomPhraseAsArray(arr) {
+const randomPhrase = Math.floor(Math.random() * arr.length);
+let Phrase = arr[randomPhrase];
+console.log(Phrase);
+return Phrase;
 }
+
+const randomPhrase = getRandomPhraseAsArray(phrases);
 
 // adds the letters of the string to the display
 const addPhraseToDisplay = arr => {
+for (let i = 0; i < arr.length; i++) {
+  const listItem = document.createElement('li');
+  listItem.textContent = arr[i];
+  phraseUl.appendChild(listItem);
 
+  if (arr[i] === ' '){
+    listItem.className = 'letter';
+  } else {
+    listItem.className = 'space';
+  }
+}
 }
 
-// check if a letter is in the phrase
-const checkLetter = button => {
+const phraseArray = getRandomPhraseAsArray(phrases);
 
+// check if a letter is in the phrase
+function checkLetter(clickedButton)  {
+  let match = null;
+  let clickedLetter = document.querySelectorAll('li');
+
+for (let i = 0; i < clickedLetter.length; i++) {
+    if (clickedButton === clickedLetter[i].textContent.toUpperCase()) {
+      clickedLetter[i].classList.add('show');
+      match = clickedButton.textContent;
+    }
+}
+return match;
 }
 
 // check if the game has been won or lost
