@@ -1,5 +1,5 @@
 const qwerty = document.getElementById("qwerty");
-const phrase = document.getElementById("phrase");
+const phrase = document.getElementById("#phrase ul");
 const btnReset = document.querySelector(".btn__reset");
 
 let missed = 0;
@@ -32,7 +32,7 @@ const addPhraseToDisplay = arr => {
 for (let i = 0; i < arr.length; i++) {
   const listItem = document.createElement('li');
   listItem.textContent = arr[i];
-  phraseUl.appendChild(listItem);
+  phrase.appendChild(listItem);
 
   if (arr[i] === ' '){
     listItem.className = 'letter';
@@ -41,8 +41,7 @@ for (let i = 0; i < arr.length; i++) {
   }
 }
 }
-
-const phraseArray = getRandomPhraseAsArray(phrases);
+ addPhraseToDisplay(phrase);
 
 // check if a letter is in the phrase
 function checkLetter(clickedButton)  {
