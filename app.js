@@ -4,6 +4,7 @@ const startButton = document.querySelector('.btn__reset');
 const overlay = document.querySelector('#overlay');
 const winText = document.querySelector('.title');
 const ul = document.querySelector('ul');
+const letter = document.getElementsByClassName('letter');
 
 let missed = 0;
 
@@ -52,9 +53,9 @@ function addPhraseToDisplay(arr) {
 
     for (let i = 0; i < clickedLetter.length; i += 1) {
       const li = clickedLetter[i];
-      if (clickedLetter.textContent === arr.textContent){
-        clickedLetter.classList.add('show');
-        clickedLetter.style.transition = "all .5s ease";
+      if (letter[i].textContent === arr.textContent){
+        letter[i].classList.add('show');
+
         match = arr.textContent;
       }
     }
@@ -74,4 +75,31 @@ function addPhraseToDisplay(arr) {
         missed += 1;
       }
     }
+    checkWin();
   });
+
+  function resetGame(){
+    startButton.addEventListener('click', (e) => {
+      ul.style.display = 'none';
+    })
+  };
+
+  function checkWin() {
+    const show = document.getElementsByClassName('show');
+    const letters = document.getElementsByClassName('letter');
+    if (letters.length === show.length) {
+      overlay.classList.add('win');
+      overlay.style.display = 'flex';
+      winText.textContent = "You Win!";
+      startButton.textButton = "Restart";
+      resetGame();
+        }
+  }
+
+  if (missed >= 5) {
+    overlay.classList.add ('lose');
+    overlay.style.display = 'flex';
+    winText.textContent = 'You lose!';
+    startButton.textContent = "Restart";
+    resetGame();
+  }
