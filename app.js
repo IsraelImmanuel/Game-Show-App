@@ -9,11 +9,11 @@ const letter = document.getElementsByClassName('letter');
 let missed = 0;
 
 const phrases = [
-  'Twelve Carat Toothache',
-  'Whole Lotta Red',
-  'Come home the kids miss you',
-  'Tickets to my downfall',
-  'I never liked you',
+  'twelve carat toothache',
+  'whole lotta red',
+  'come home the kids miss you',
+  'tickets to my downfall',
+  'i never liked you',
 ]
 
 startButton.addEventListener('click',(e) => {
@@ -81,10 +81,13 @@ function addPhraseToDisplay(arr) {
   function resetGame(){
     startButton.addEventListener('click', (e) => {
       ul.style.display = 'none';
+      
     })
   };
 
   function checkWin() {
+
+
     const show = document.getElementsByClassName('show');
     const letters = document.getElementsByClassName('letter');
     if (letters.length === show.length) {
@@ -92,14 +95,16 @@ function addPhraseToDisplay(arr) {
       overlay.style.display = 'flex';
       winText.textContent = "You Win!";
       startButton.textButton = "Restart";
+
       resetGame();
         }
-  }
 
-  if (missed >= 5) {
-    overlay.classList.add ('lose');
-    overlay.style.display = 'flex';
-    winText.textContent = 'You lose!';
-    startButton.textContent = "Restart";
-    resetGame();
-  }
+          if (missed >= 5) {
+
+            overlay.classList.add ('lose');
+            overlay.style.display = 'flex';
+            winText.textContent = 'You lose!';
+            startButton.textContent = "Restart";
+            resetGame();
+          }
+        };
